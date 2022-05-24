@@ -1,0 +1,10 @@
+{
+  "themes": [
+    {
+      "name": "keycloak-react-pages",
+      "types": [
+        "login"
+      ]
+    }
+  ]
+}
