@@ -1,11 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { KcApp, defaultKcProps, getKcContext } from "keycloakify";
 
 function App() {
+  const { kcContext } = getKcContext({
+    mockPageId: "login.ftl",
+  });
+
+  if (kcContext === undefined) {
+    throw new Error(
+      "This app is a Keycloak theme" +
+        "It isn't meant to be deployed outside of Keycloak"
+    );
+  }
   return (
     <div className="App">
-      <header className="App-header">
+      <KcApp
+        kcContext={kcContext}
+        {...{
+          ...defaultKcProps,
+          kcHeaderWrapperClass: "my-class",
+        }}
+      />
+      {/*<header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
@@ -18,7 +36,7 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header>*/}
     </div>
   );
 }
